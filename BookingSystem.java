@@ -2,6 +2,7 @@ import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
+// class object booking
 class Booking {
     private int id;
     private String date;
@@ -12,6 +13,7 @@ class Booking {
     private double distance;
     private double fare;
 
+    // declare object variable
     public Booking(int id, String name, String pickup, String dropoff, double distance) {
         this.id = id;
         LocalDate currentDate = LocalDate.now();
@@ -43,11 +45,13 @@ class Booking {
 }
 
 public class BookingSystem {
-    private static ArrayList<Booking> bookings = new ArrayList<>();
+    private static ArrayList<Booking> bookings = new ArrayList<>(); // create new array list with variable bookings
     private static int nextId = 1;
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        // infinite loop
         while (true) {
             System.out.println("\nRIDE-HAILING BOOKING SYSTEM");
             System.out.println("\nSystem Menu");
@@ -91,19 +95,29 @@ public class BookingSystem {
         }
     }
 
+    // method for add booking
     private static void addBooking() {
+
+        // asks for user name
         System.out.print("Enter name: ");
         String name = sc.nextLine();
+
+        // asks for user pick up location
         System.out.print("Enter pick up location: ");
         String pickup = sc.nextLine();
+
+        // asks for user drop off location
         System.out.print("Enter drop off location: ");
         String dropoff = sc.nextLine();
+
+        // asks for distance in kilometers
         System.out.print("Enter distance (km): ");
         double distance = Double.parseDouble(sc.nextLine());
-        bookings.add(new Booking(nextId++, name, pickup, dropoff, distance));
+        bookings.add(new Booking(nextId++, name, pickup, dropoff, distance)); // adds to the booking array list the given inputs
         System.out.println("Booking added.");
     }
 
+    // method for deleting a booking
     private static void deleteBooking() {
         System.out.print("Enter booking ID to delete: ");
         int id = Integer.parseInt(sc.nextLine());
@@ -112,7 +126,10 @@ public class BookingSystem {
         else System.out.println("Booking ID not found.");
     }
 
+    // method for generating report
     private static void generateReport() {
+
+        // condition to check if booking array list is empty
         if (bookings.isEmpty()) {
             System.out.println("No bookings to report.");
             return;
